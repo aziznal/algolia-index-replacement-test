@@ -1,7 +1,7 @@
 "use client";
 
 import { useAlgoliaClient } from "@/lib/hooks/useAlgoliaClient";
-import { useEffect } from "react";
+import { Post } from "@/lib/types";
 import {
   InstantSearch,
   SearchBox,
@@ -19,13 +19,6 @@ export function AlgoliaSearch() {
     </div>
   );
 }
-
-type Post = {
-  content: string;
-  objectID: string;
-  title: string;
-  views: number;
-};
 
 function SearchInput() {
   const { status, results } = useInstantSearch();
@@ -62,7 +55,9 @@ function SearchInput() {
               <div className="flex flex-col gap-1">
                 <h2 className="text-lg font-medium">{hit.title}</h2>
                 <p className="text-zinc-600">{hit.content}</p>
+                <div className="text-zinc-400 text-sm">{hit.objectID}</div>
               </div>
+
             </div>
           ))}
       </div>
